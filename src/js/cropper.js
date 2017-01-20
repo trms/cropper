@@ -103,9 +103,9 @@ class Cropper {
       self.clone();
     }, this);
 
-    xhr.onload = function load() {
-      self.read(this.response);
-    };
+    xhr.onload = $.proxy(() => {
+      self.read(this.response)
+    }, this);
 
     if (options.checkCrossOrigin && utils.isCrossOriginURL(url) && $this.prop('crossOrigin')) {
       url = utils.addTimestamp(url);
