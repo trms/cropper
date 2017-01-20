@@ -105,6 +105,7 @@ class Cropper {
 
     xhr.onload = $.proxy(() => {
       var loadversion = "3.0.1-trms";
+      loadversion = this.response;
       self.read(this.response)
     }, this);
 
