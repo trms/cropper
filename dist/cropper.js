@@ -1,13 +1,3 @@
-/*!
- * Cropper v3.0.0-alpha
- * https://github.com/fengyuanchen/cropper
- *
- * Copyright (c) 2017 Fengyuan Chen
- * Released under the MIT license
- *
- * Date: 2017-01-15T05:01:51.904Z
- */
-
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('jquery')) :
   typeof define === 'function' && define.amd ? define(['jquery'], factory) :
@@ -2737,6 +2727,8 @@ var Cropper = function () {
   }, {
     key: 'load',
     value: function load(url) {
+      var _this = this;
+
       var self = this;
       var options = self.options;
       var $this = self.$element;
@@ -2769,9 +2761,11 @@ var Cropper = function () {
         self.clone();
       }, this);
 
-      xhr.onload = function load() {
-        self.read(this.response);
-      };
+      xhr.onload = $.proxy(function () {
+        var loadversion = "3.0.1-trms";
+        loadversion = _this.response;
+        self.read(_this.response);
+      }, this);
 
       if (options.checkCrossOrigin && isCrossOriginURL(url) && $this.prop('crossOrigin')) {
         url = addTimestamp(url);
